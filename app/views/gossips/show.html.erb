@@ -1,0 +1,23 @@
+<div class="container">
+  <h1 class="display-4 text-center my-3">The Gossip Project</h1>
+
+  <div class="row justify-content-center">
+      <div class="col-6">
+        <div class="card">
+          <img class="card-img-top" alt="Card image cap" src="https://actu.meilleurmobile.com/wp-content/uploads/2015/06/gossip-application.jpg">
+          <div class="card-body">
+            <h5 class="card-title"><%=@gossip.title %></h5>
+            <p class="card-text"><%= @gossip.content %></p>
+            <p class="card-text">
+              <small class="text-muted">
+                posté par <a href="<%= user_path(@gossip.user.id) %>"><%=@gossip.user.first_name %> de <%=@gossip.user.city.name %></a>
+                le <%=@gossip.created_at.strftime("%d/%m/%Y à %H:%I") %>
+              </small>
+            </p>
+            <p><a href="<%= edit_gossip_path(@gossip.id) %>" class="btn btn-primary">Editer le gossip</a></p>
+            <p><a href="<%= gossip_path(@gossip.id) %>" class="btn btn-danger" data-confirm="Etes vous sur ?" data-method="delete">Supprimer le gossip</a></p>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

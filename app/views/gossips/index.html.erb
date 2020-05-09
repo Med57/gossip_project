@@ -1,0 +1,32 @@
+<div class="container">
+  <h1 class="display-4 text-center my-3">The Gossip Project</h1>
+
+    <!-- unless @gossip.errors.any? %>-->
+    <!--  <div class="alert alert-success" role="alert">-->
+    <!--  <p>Gossip ajouté avec succes</p>-->
+    <!--  </div>-->
+  <!--  end %>-->
+  <% if User.find_by(id: session[:user_id]) %>
+  <h4 class="text-center"><%= link_to "Creer ton Gossip", new_gossip_path %></h4>
+  <% end %>
+  <div class="row">
+    <% @gossips.each do |gossip| %>
+      <div class="col-4 mb-3">
+        <div class="card">
+          <img class="card-img-top" alt="Card image cap" src="https://actu.meilleurmobile.com/wp-content/uploads/2015/06/gossip-application.jpg">
+          <div class="card-body">
+            <h5 class="card-title"><%=gossip.title %></h5>
+            <p class="card-text"><%= truncate gossip.content, length: 30 %></p>
+            <p class="card-text">
+              <small class="text-muted">
+                posté par <a href="<%= user_path(gossip.user.id) %>"><%=gossip.user.first_name %></a>
+                le <%=gossip.created_at.strftime("%d/%m/%Y %H:%I") %>
+              </small>
+            </p>
+            <a type="button" class="btn btn-primary btn-block" href="<%=gossip_path(gossip.id) %>">Voir le potin</a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

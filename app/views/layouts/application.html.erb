@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TheGossipProject</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">The Gossip Project</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="<%=gossips_path %>">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%=team_path%>">Equipe</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%=contact_path%>">Contact</a>
+          </li>
+          <% if !User.find_by(id: session[:user_id]) %>
+          <li class="nav-item">
+            <a a class="nav-link" href="<%=new_user_path%>">S'inscrire</a>
+          </li>
+          <li>
+            <a a class="nav-link" href="<%=new_session_path%>">Se connecter</a>
+          </li>
+          <% else %>
+          <li>
+            <a a class="nav-link" href="<%= session_path(session.id) %>" data-method="delete" data-confirm="Veuillez confirmer la deconnexion?">Se deconnecter</a>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+    <%= yield %>
+  </body>
+</html>

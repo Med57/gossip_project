@@ -1,0 +1,22 @@
+<div class="container">
+  <h1 class="display-4 text-center my-5">The Gossip Project</h1>
+
+  <div class="row justify-content-center">
+
+    <div class="card flex-row flex-wrap">
+      <div class="card-header border-0">
+        <img src="https://cdn4.iconfinder.com/data/icons/user-avatar-flat-icons/512/User_Avatar-04-512.png" alt=""
+             width="300">
+      </div>
+      <div class="card-block px-2 mt-4 ml-3">
+        <h4 class="card-title h2"><%= @user.first_name %> <%= @user.last_name.upcase %></h4>
+        <p class="card-text"><span class="h5">Age : </span><%= @user.age %> ans</p>
+        <p class="card-text"><span class="h5">Ville :</span> <a href="<%= city_path(@user.city.name)%>"><%= @user.city.name %></p></a>
+        <p class="card-text"><span class="h5">Email :</span> <a href="mailto:<%= @user.email %>"><%= @user.email %></a></p>
+        <p class="card-text"><span class="h5">Description : </span><br /><%= @user.description %></p>
+        <a href="#" class="btn btn-info">Envoyer un message privé</a>
+        <div class="w-100"></div>
+      </div>
+    </div>
+  </div>
+</div>
